@@ -57,7 +57,7 @@ const loadQuiz = async () => {
 
 // Displaying quiz on quiz page
 const displayQuiz = (data) => {
-  const quizShow = document.getElementById('quizShow');
+  const quizShow = document.getElementById('quizContainer');
   if (!data) {
     quizShow.innerHTML = " ";
     return;
@@ -116,10 +116,10 @@ document.querySelector("#submit").addEventListener("click", () => {
   }
 
   // data setting on local storage and getting data from local storage
-  let storage = JSON.parse(localStorage.getItem("result"));
+  let storage = JSON.parse(localStorage.getItem('result'));
   if (storage) {
     localStorage.setItem(
-      "results",
+      "result",
       JSON.stringify([
         ...storage,
         {
@@ -131,7 +131,7 @@ document.querySelector("#submit").addEventListener("click", () => {
     );
   } else {
     localStorage.setItem(
-      "results",
+      "result",
       JSON.stringify([
         {
           marks: totalMark,
@@ -145,7 +145,8 @@ document.querySelector("#submit").addEventListener("click", () => {
   // Right side bar/ answer section
   let x = setTimeout(() => {
     showAnswers(answers);
-    displayResult.innerHTML = `<div
+    const displayResult1= document.getElementById('displayResult');
+    displayResult1.innerHTML = `<div
     class="h-[220px] w-[220px] mx-auto mt-8 flex flex-col justify-center border-2 rounded-tr-[50%] rounded-bl-[50%]"
   >
     <h3 class="text-xl ${grade.color}">${grade.status}</h3>
