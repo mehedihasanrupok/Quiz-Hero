@@ -51,20 +51,20 @@ const loadQuiz = async () => {
   // const res = await fetch("./data/quiz.json");
   const data = await res.json();
   console.log(data);
-  // quizData = data;
+   quizData = data;
   displayQuiz(data);
 };
 
 // Displaying quiz on quiz page
 const displayQuiz = (data) => {
+  const quizShow = document.getElementById('quizShow');
   if (!data) {
-    quizContainer.innerHTML = " ";
+    quizShow.innerHTML = " ";
     return;
   }
  else{
-  let i=0;
+  // let i=0;
   data.forEach((quiz,i) => {
-    const quizShow = document.getElementById('quizShow');
     quizShow.innerHTML += `<div class="m-3 py-3 px-4 shadow-sm rounded">
   <div class="flex items-center">
     <div class="h-8 w-8 bg-green-300 rounded-full flex justify-center items-center text-green-800 mr-3">
@@ -76,13 +76,13 @@ const displayQuiz = (data) => {
     ${displayQuizOptions(quiz.options, i)}
   </div>
 </div>`;
-i++;
+//  i++;
   });
  }
 };
 
 // EventListener for quiz submit button
-document.querySelector("#submit").addEventlistener("click", () => {
+document.querySelector("#submit").addEventListener("click", () => {
   if (answers.length < 6) {
     return;
   }
